@@ -1,33 +1,96 @@
 .App {
+  width: 600px;
+  padding-top: 50px;
+  margin: 0 auto;
+}
+
+.header {
+  padding: 30px;
+  width: 100%;
+  background: #1abc9c;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.header ul {
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.header ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  list-style: none;
+}
+
+.header .btn-arrow {
+  width: 10%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.header .btn-arrow:hover {
+  cursor: pointer;
+  background-color: #E5E7E9;
+  color: black;
+}
+
+.header .prev {
+  float: left;
+}
+
+.header .next {
+  float: right;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color:#ddd;
+  width: 660px;
+  height: 360px;
+}
+
+.days {
+  padding: 10px 0;
+  margin: 0;
+}
+
+.days td {
+  text-align: center;
+  width: 13.6%;
+  padding-left: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.days td:hover:not(.faded):not(.selected) {
+  background-color: #EAEDED;
+}
+
+.days td:hover:not(.faded) {
+  cursor: pointer;
+}
+
+.days .selected {
+  background-color: #2E86C1;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.days .faded {
+  opacity: .4;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.days .current {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 8%;
+  -webkit-clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  bottom: 8%;
+  background-color: white;
 }

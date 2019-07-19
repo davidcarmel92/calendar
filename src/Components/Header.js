@@ -1,10 +1,14 @@
 import React from 'react';
 
-function Header() {
+const Header = props => {
   return (
-    <div className="Header">
-
-    </div>
+    <header className="header">
+      <ul>
+        <li onClick={() => props.onChangeMonth('prev')} className="btn-arrow prev">&#10094;</li>
+        <li onClick={() => props.onChangeMonth('next')} className="btn-arrow next">&#10095;</li>
+        <li>{props.month} {props.year}</li>
+      </ul>
+    </header>
   );
 }
 
