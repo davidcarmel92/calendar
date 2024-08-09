@@ -7,7 +7,11 @@ class App extends Component {
 
   state = {
     currentDay: null,
-    selectedDay: null,
+    selectedDay: {
+      month: null,
+      day: null,
+      year: null,
+    },
     currentMonth: null,
     currentYear: null,
     daysInMonth: null,
@@ -33,15 +37,15 @@ class App extends Component {
     const lastMonthDays = 32 - (new Date(currentYear, currentMonth-1, 32).getDate());
 
     // Store all data in component state.
-    this.setState({
+    this.setState(prevState => ({
       currentDay: currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear() ? new Date().getDate() : null,
-      selectedDay: initial ? new Date().getDate() : null,
+      selectedDay: initial ? new Date().getDate() : prevState.selectedDay,
       daysInMonth: daysInMonth,
       firstDay: firstDay,
       currentMonth: currentMonth,
       currentYear: currentYear,
       lastMonthDays: lastMonthDays
-    });
+    }));
   }
 
   // Change to new month.
@@ -67,8 +71,7 @@ class App extends Component {
 
   onSelectDay = (day) => {
     // Update selected day.
-    console.log(this.state.months[this.state.currentMonth], day, this.state.currentYear);
-    this.setState({ selectedDay: day })
+    this.setState({ selectedDay: { day, month: this.state.currentMonth, year: this.state.currentYear } })
   }
 
   render(){
@@ -85,7 +88,7 @@ class App extends Component {
         />
         <Month
           currentDay={currentDay}
-          selectedDay={selectedDay}
+          selectedDay={currentMonth === selectedDay.month && currentYear === selectedDay.year ? selectedDay.day : null}
           daysInMonth={daysInMonth}
           firstDay={firstDay}
           lastMonthDays={lastMonthDays}
